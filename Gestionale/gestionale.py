@@ -402,26 +402,29 @@ class MainApp(FloatLayout):
     
     def update(self, *args):
         global version
-        self.add_options_liv()
-        filee = open("version.txt", "r")
-        file1 = filee.read()
-        filee.close()
-        file1 = file1.replace("\n", "")
-        version = float(file1)
-        os.system("rm -rf version.txt")
-        os.system("git clone https://github.com/Stef-deb/Version")
-        os.system("mv Version/version.txt version.txt")
-        os.system("rm -rf Version")
-        filez = open("version.txt", "r")
-        filez1 = filez.read()
-        filez.close()
-        file1 = filez1.replace("\n", "")
-        final_version = float(filez1)
-        if final_version > version:
-            subprocess.Popen("./update.py")
-            sys.exit()
-        else:
-            self.add_generical_alert(f"L'app è alla versione\npiù aggiornata! {final_version}")
+        try:
+            self.add_options_liv()
+            filee = open("version.txt", "r")
+            file1 = filee.read()
+            filee.close()
+            file1 = file1.replace("\n", "")
+            version = float(file1)
+            os.system("rm -rf version.txt")
+            os.system("git clone https://github.com/Stef-deb/Version")
+            os.system("mv Version/version.txt version.txt")
+            os.system("rm -rf Version")
+            filez = open("version.txt", "r")
+            filez1 = filez.read()
+            filez.close()
+            file1 = filez1.replace("\n", "")
+            final_version = float(filez1)
+            if final_version > version:
+                subprocess.Popen("./update.py")
+                sys.exit()
+            else:
+                self.add_generical_alert(f"L'app è alla versione\npiù aggiornata! {final_version}")
+        except Exception as e:
+            self.add_generical_alert(e)
 
 class MyGest(App):
     def build(self):
