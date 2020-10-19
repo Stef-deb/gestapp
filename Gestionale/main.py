@@ -20,7 +20,6 @@ var = var.decode("utf-8")
 var = var.split("/")
 var.pop()
 var = "/".join(var)
-var = var.replace(" ", "")
 os.chdir(var)
 
 Window.size = (1920, 1080)
