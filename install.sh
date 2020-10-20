@@ -1,4 +1,4 @@
 mkdir /stef 
 cd ..
 mv gestapp /stef/gestapp
-mv /stef/gestapp/Gestionale.sh Gestionale.sh
+mv /stef/gestapp/Gestionale.command Gestionale.command
