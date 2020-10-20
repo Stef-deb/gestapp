@@ -10,7 +10,7 @@ try:
 	os.system("git clone https://github.com/Stef-deb/Gestionale")
 	os.chdir("Gestionale")
 	os.system("chmod +x main.py")
-	os.system("./gestionale.py")
+	os.system("./main.py")
 except Exception as e:
 	data = datetime.now()
 	data = data.strftime("%D:%H:%M:%S")
