@@ -11,10 +11,11 @@ from kivy.uix.textinput import TextInput
 from datetime import datetime
 from kivy.uix.scrollview import ScrollView
 from kivy.config import Config
-import threading, subprocess, os, sys
+import subprocess, os, sys
 from kivy.uix.filechooser import FileChooserIconView
 
 # outclass
+
 var = subprocess.check_output("pwd", shell=True)
 var = var.decode("utf-8")
 var = var.split("/")
@@ -47,16 +48,16 @@ class MainApp(FloatLayout):
         super().__init__(**kwargs)
 
         # background,toolbar
-        self.title = Label(text = "Gestionale", font_size = 40, outline_color = (0,0,0,0), outline_width = 2, pos_hint = {"center_x":0.5, "center_y":0.966})
+        self.title = Label(text = "Gestionale", font_size = 50, outline_color = (0,0,0,0), outline_width = 2, pos_hint = {"center_x":0.5, "center_y":0.966})
         self.background = Button(background_color = (1,1,1,1), background_normal = "", background_down = "")
         self.toolbar =  Button(background_color = (64/255, 121/255, 191/255, 1), background_normal = "", background_down = "", size_hint = (1, 0.07), pos_hint = {"center_x":0.5, "top":1})
-        self.new_customer = Button(text = "nuovo cliente", pos_hint = {"center_x":0.93, "center_y":0.966}, background_down = "assets/Button_orange_2.png", background_normal = "assets/Button_orange_2.png", size_hint = (0.1, 0.06), on_press = self.alertus)
+        self.new_customer = Button(text = "nuovo cliente", font_size = 30, pos_hint = {"center_x":0.93, "center_y":0.966}, background_down = "assets/Button_orange_2.png", background_normal = "assets/Button_orange_2.png", size_hint = (0.1, 0.06), on_press = self.alertus)
         self.new_customer.bind(size = self.resize)
-        self.options = Button(text = "opzioni", background_down = "assets/Button_orange_2.png", background_normal = "assets/Button_orange_2.png", pos_hint = {"center_x":0.07, "center_y":0.966}, size_hint = (0.1, 0.06), on_press = self.add_options_liv)
-        self.customer_number = Label(text = f"Numero di clienti : {customer_numberz}", font_size = 20, outline_color = (0,0,0,0), outline_width = 2, pos_hint = {"center_x":0.3, "center_y":0.866})
+        self.options = Button(text = "opzioni", font_size = 30, background_down = "assets/Button_orange_2.png", background_normal = "assets/Button_orange_2.png", pos_hint = {"center_x":0.07, "center_y":0.966}, size_hint = (0.1, 0.06), on_press = self.add_options_liv)
+        self.customer_number = Label(text = f"Numero di clienti : {customer_numberz}", font_size = 40, outline_color = (0,0,0,0), outline_width = 2, pos_hint = {"center_x":0.3, "center_y":0.866})
         self.search = TextInput(size_hint = (0.2, 0.05), pos_hint = {"center_x":0.7, "center_y":0.866}, multiline = False, on_text_validate = self.search_fn)
-        self.search_text = Label(text = "Cerca",  font_size = 20, outline_color = (0,0,0,1), outline_width = 2, pos_hint = {"center_x":0.55, "center_y":0.866})
-        self.all_button = Button(text = "Tutti", size_hint = (0.05, 0.05), background_down = "assets/Button_orange_2.png", background_normal = "assets/Button_orange_2.png", pos_hint = {"center_x":0.85, "center_y":0.866}, on_press = self.refresh)
+        self.search_text = Label(text = "Cerca", font_size = 40, outline_color = (0,0,0,1), outline_width = 2, pos_hint = {"center_x":0.55, "center_y":0.866})
+        self.all_button = Button(text = "Tutti", font_size = 30,  size_hint = (0.05, 0.05), background_down = "assets/Button_orange_2.png", background_normal = "assets/Button_orange_2.png", pos_hint = {"center_x":0.85, "center_y":0.866}, on_press = self.refresh)
         self.add_widget(self.background)
         self.add_widget(self.toolbar)
         self.add_widget(self.title)
@@ -77,10 +78,10 @@ class MainApp(FloatLayout):
         self.alertliv = RelativeLayout()
         self.alertliv.add_widget(Button(background_color = (0,0,0,0.2), background_down = "", background_normal = "", on_press = self.alertus))
         self.alertliv.add_widget(Button(size_hint = (0.3, 0.3), background_down = "assets/Button_white.png", background_normal = "assets/Button_white.png", pos_hint = {"center_x":0.5, "center_y":0.5}))
-        self.labellotxt = Label(text = "   Digita il nome\ndel nuovo cliente", outline_color = (0,0,0,1), outline_width = 2, font_size = 20, pos_hint = {"center_x":0.5, "center_y":0.61})
+        self.labellotxt = Label(text = "   Digita il nome\ndel nuovo cliente", outline_color = (0,0,0,1), outline_width = 2, font_size = 40, pos_hint = {"center_x":0.5, "center_y":0.61})
         self.labello = TextInput(size_hint = (0.2, 0.05), pos_hint = {"center_x":0.5, "center_y":0.52}, multiline = False)
         self.labello.bind(on_text_validate = self.save)
-        self.ex = Button(text = "Salva", pos_hint = {"center_x":0.5, "center_y":0.42}, background_down = "assets/Button_orange_2.png", background_normal = "assets/Button_orange_2.png", font_size = 20, size_hint = (0.1, 0.1), on_press = self.save)
+        self.ex = Button(text = "Salva", pos_hint = {"center_x":0.5, "center_y":0.42}, background_down = "assets/Button_orange_2.png", background_normal = "assets/Button_orange_2.png", font_size = 40, size_hint = (0.1, 0.1), on_press = self.save)
         self.alertliv.add_widget(self.labello)
         self.alertliv.add_widget(self.ex)
         self.alertliv.add_widget(self.labellotxt)
@@ -88,13 +89,13 @@ class MainApp(FloatLayout):
         # customer_view
 
         self.livello1 = RelativeLayout()
-        self.title2 = Label(text = "Gestionale", font_size = 40, outline_color = (0,0,0,0), outline_width = 2, pos_hint = {"center_x":0.5, "center_y":0.966})
+        self.title2 = Label(text = "Gestionale", font_size = 50, outline_color = (0,0,0,0), outline_width = 2, pos_hint = {"center_x":0.5, "center_y":0.966})
         self.background2 = Button(background_color = (1,1,1,1), background_normal = "", background_down = "")
         self.toolbar2 =  Button(background_color = (191/255, 83/255, 64/255, 1), background_normal = "", background_down = "", size_hint = (1, 0.07), pos_hint = {"center_x":0.5, "top":1})
-        self.exit = Button(text = "Indietro", pos_hint = {"center_x":0.93, "center_y":0.966}, background_down = "assets/Button_orange_2.png", background_normal = "assets/Button_orange_2.png", size_hint = (0.1, 0.06), on_press = self.add_customer_view)
-        self.edit = Button(text = "Elimina cliente", pos_hint = {"center_x":0.07, "center_y":0.966}, background_down = "assets/Button_orange_2.png", background_normal = "assets/Button_orange_2.png", size_hint = (0.1, 0.06), on_press = self.alert3)
+        self.exit = Button(text = "Indietro", font_size = 30, pos_hint = {"center_x":0.93, "center_y":0.966}, background_down = "assets/Button_orange_2.png", background_normal = "assets/Button_orange_2.png", size_hint = (0.1, 0.06), on_press = self.add_customer_view)
+        self.edit = Button(text = "Elimina cliente", font_size = 30, pos_hint = {"center_x":0.07, "center_y":0.966}, background_down = "assets/Button_orange_2.png", background_normal = "assets/Button_orange_2.png", size_hint = (0.1, 0.06), on_press = self.alert3)
         self.works = TextInput(multiline = False, pos_hint = {"center_x":0.5, "center_y":0.35}, size_hint = (0.9, 0.65), on_text_validate = self.validatee)
-        self.customer_namez = Label(text = f"Cliente : {customer_name}", font_size = 24, outline_color = (0,0,0,0), outline_width = 2, pos_hint =  {"center_x":0.08, "center_y":0.83})
+        self.customer_namez = Label(text = f"Cliente : {customer_name}", font_size = 35, outline_color = (0,0,0,0), outline_width = 2, pos_hint =  {"center_x":0.08, "center_y":0.83})
         self.customer_namez.bind(text = self.text_input_change)
 
         self.livello1.add_widget(self.background2)
@@ -104,18 +105,18 @@ class MainApp(FloatLayout):
         self.livello1.add_widget(self.title2)
         self.livello1.add_widget(self.works)
         self.livello1.add_widget(self.customer_namez)
-        
+
         # work details
-        
+
         self.text_work = TextInput(size_hint = (0.1, 0.03), multiline = False, pos_hint = {"center_x":0.31, "center_y":0.83})
         self.text_work_imp = TextInput(size_hint = (0.1, 0.03), multiline = False, pos_hint = {"center_x":0.58, "center_y":0.83})
         self.text_work_date = TextInput(size_hint = (0.1, 0.03), multiline = False, pos_hint = {"center_x":0.86, "center_y":0.83})
         self.text_work_details = TextInput(size_hint = (0.5, 0.03), multiline = False, pos_hint = {"center_x":0.5, "center_y":0.73})
-        self.text_worK_text = Label(text = "Lavoro", font_size = 24, outline_color = (0,0,0,0), outline_width = 2, pos_hint = {"center_x":0.22, "center_y":0.83})
-        self.text_worK_text_imp = Label(text = "Importo", font_size = 24, outline_color = (0,0,0,0), outline_width = 2, pos_hint = {"center_x":0.49, "center_y":0.83})
-        self.text_worK_text_date = Label(text = "Data", font_size = 24, outline_color = (0,0,0,0), outline_width = 2, pos_hint = {"center_x":0.77, "center_y":0.83})
-        self.text_worK_text_details = Label(text = "Dettagli", font_size = 24, outline_color = (0,0,0,0), outline_width = 2, pos_hint = {"center_x":0.21, "center_y":0.73})
-        
+        self.text_worK_text = Label(text = "Lavoro", font_size = 35, outline_color = (0,0,0,0), outline_width = 2, pos_hint = {"center_x":0.22, "center_y":0.83})
+        self.text_worK_text_imp = Label(text = "Importo", font_size = 35, outline_color = (0,0,0,0), outline_width = 2, pos_hint = {"center_x":0.49, "center_y":0.83})
+        self.text_worK_text_date = Label(text = "Data", font_size = 35, outline_color = (0,0,0,0), outline_width = 2, pos_hint = {"center_x":0.77, "center_y":0.83})
+        self.text_worK_text_details = Label(text = "Dettagli", font_size = 35, outline_color = (0,0,0,0), outline_width = 2, pos_hint = {"center_x":0.21, "center_y":0.73})
+
         self.livello1.add_widget(self.text_work)
         self.livello1.add_widget(self.text_work_imp)
         self.livello1.add_widget(self.text_work_date)
@@ -127,12 +128,12 @@ class MainApp(FloatLayout):
 
         # work details save
 
-        self.work_save = Button(text = "Salva", pos_hint =  {"center_x":0.08, "center_y":0.73}, background_down = "assets/Button_orange_2.png", background_normal = "assets/Button_orange_2.png", size_hint = (0.1, 0.06), on_press = self.save_work)
+        self.work_save = Button(text = "Salva", font_size = 30, pos_hint =  {"center_x":0.08, "center_y":0.73}, background_down = "assets/Button_orange_2.png", background_normal = "assets/Button_orange_2.png", size_hint = (0.1, 0.06), on_press = self.save_work)
         self.livello1.add_widget(self.work_save)
 
         #generate file.txt with customer details
 
-        self.work_file = Button(text = "Crea file.txt", pos_hint =  {"center_x":0.92, "center_y":0.73}, background_down = "assets/Button_orange_2.png", background_normal = "assets/Button_orange_2.png", size_hint = (0.1, 0.06), on_press = self.add_filechos)
+        self.work_file = Button(text = "Crea file.txt", font_size = 30, pos_hint =  {"center_x":0.92, "center_y":0.73}, background_down = "assets/Button_orange_2.png", background_normal = "assets/Button_orange_2.png", size_hint = (0.1, 0.06), on_press = self.add_filechos)
         self.livello1.add_widget(self.work_file)
 
         # delete alert
@@ -140,38 +141,38 @@ class MainApp(FloatLayout):
         self.alertliv3 = RelativeLayout()
         self.alertliv3.add_widget(Button(background_color = (0,0,0,0.2), background_down = "", background_normal = ""))
         self.alertliv3.add_widget(Button(size_hint = (0.3, 0.3), background_down = "assets/Button_white.png", background_normal = "assets/Button_white.png", pos_hint = {"center_x":0.5, "center_y":0.5}))
-        self.labello3 = Label(text = "Vuoi davvero eliminare\n il cliente e i relativi dati?", outline_color = (0,0,0,1), outline_width = 2, font_size = 20, pos_hint = {"center_x":0.5, "center_y":0.58})
-        self.ex3 = Button(text = "Si", pos_hint = {"center_x":0.43, "center_y":0.42}, background_down = "assets/Button_orange_2.png", background_normal = "assets/Button_orange_2.png", font_size = 20, size_hint = (0.1, 0.1), on_press = self.deletez)
-        self.ex3_1 = Button(text = "No", pos_hint = {"center_x":0.57, "center_y":0.42}, background_down = "assets/Button_orange_2.png", background_normal = "assets/Button_orange_2.png", font_size = 20, size_hint = (0.1, 0.1), on_press = self.alert3)
+        self.labello3 = Label(text = "Vuoi davvero eliminare\n il cliente e i relativi dati?", outline_color = (0,0,0,1), outline_width = 2, font_size = 40, pos_hint = {"center_x":0.5, "center_y":0.58})
+        self.ex3 = Button(text = "Si", pos_hint = {"center_x":0.43, "center_y":0.42}, background_down = "assets/Button_orange_2.png", background_normal = "assets/Button_orange_2.png", font_size = 40, size_hint = (0.1, 0.1), on_press = self.deletez)
+        self.ex3_1 = Button(text = "No", pos_hint = {"center_x":0.57, "center_y":0.42}, background_down = "assets/Button_orange_2.png", background_normal = "assets/Button_orange_2.png", font_size = 40, size_hint = (0.1, 0.1), on_press = self.alert3)
         self.alertliv3.add_widget(self.labello3)
         self.alertliv3.add_widget(self.ex3)
         self.alertliv3.add_widget(self.ex3_1)
-        
+
         #general alert
 
         self.alertliv4 = RelativeLayout()
         self.alertliv4.add_widget(Button(background_color = (0,0,0,0.2), background_down = "", background_normal = "", on_press = self.add_generical_alert))
         self.alertliv4.add_widget(Button(size_hint = (0.3, 0.3), background_down = "assets/Button_white.png", background_normal = "assets/Button_white.png", pos_hint = {"center_x":0.5, "center_y":0.5}, on_press = self.add_generical_alert))
-        self.labello4 = Label(text = "", outline_color = (0,0,0,1), outline_width = 2, font_size = 20, pos_hint = {"center_x":0.5, "center_y":0.58})
-        self.ex4 = Button(text = "Ok", pos_hint = {"center_x":0.5, "center_y":0.42}, background_down = "assets/Button_orange_2.png", background_normal = "assets/Button_orange_2.png", font_size = 20, size_hint = (0.1, 0.1), on_press = self.add_generical_alert)
+        self.labello4 = Label(text = "", outline_color = (0,0,0,1), outline_width = 2, font_size = 40, pos_hint = {"center_x":0.5, "center_y":0.58})
+        self.ex4 = Button(text = "Ok", pos_hint = {"center_x":0.5, "center_y":0.42}, background_down = "assets/Button_orange_2.png", background_normal = "assets/Button_orange_2.png", font_size = 40, size_hint = (0.1, 0.1), on_press = self.add_generical_alert)
         self.alertliv4.add_widget(self.labello4)
         self.alertliv4.add_widget(self.ex4)
 
         #delete_all_customers extension
 
-        self.yep = Button(text = "Si", pos_hint = {"center_x":0.42, "center_y":0.42}, background_down = "assets/Button_orange_2.png", background_normal = "assets/Button_orange_2.png", font_size = 20, size_hint = (0.1, 0.1), on_press = self.delete_all_customers_fn)
-        self.nope = Button(text = "No", pos_hint = {"center_x":0.58, "center_y":0.42}, background_down = "assets/Button_orange_2.png", background_normal = "assets/Button_orange_2.png", font_size = 20, size_hint = (0.1, 0.1), on_press = self.add_generical_alert)
+        self.yep = Button(text = "Si", pos_hint = {"center_x":0.42, "center_y":0.42}, background_down = "assets/Button_orange_2.png", background_normal = "assets/Button_orange_2.png", font_size = 40, size_hint = (0.1, 0.1), on_press = self.delete_all_customers_fn)
+        self.nope = Button(text = "No", pos_hint = {"center_x":0.58, "center_y":0.42}, background_down = "assets/Button_orange_2.png", background_normal = "assets/Button_orange_2.png", font_size = 40, size_hint = (0.1, 0.1), on_press = self.add_generical_alert)
 
         #filechooser to get the path
-        
+
         self.file_livl = RelativeLayout()
-        self.title3 = Label(text = "Gestionale", font_size = 40, outline_color = (0,0,0,0), outline_width = 2, pos_hint = {"center_x":0.5, "center_y":0.966})
+        self.title3 = Label(text = "Gestionale", font_size = 50, outline_color = (0,0,0,0), outline_width = 2, pos_hint = {"center_x":0.5, "center_y":0.966})
         self.backr = Button(background_color = (64/255, 121/255, 191/255, 1), background_normal = "", background_down = "", pos_hint = {"center_x":0.5, "center_y":0.5})
         self.toolbar3 =  Button(background_color = (191/255, 83/255, 64/255, 1), background_normal = "", background_down = "", size_hint = (1, 0.07), pos_hint = {"center_x":0.5, "top":1})
         self.filechos = FileChooserIconView(pos_hint = {"center_x":0.5, "center_y":0.4})
-        self.exit_fl = Button(text = "Indietro", pos_hint = {"center_x":0.93, "center_y":0.966}, background_down = "assets/Button_orange_2.png", background_normal = "assets/Button_orange_2.png", size_hint = (0.1, 0.06), on_press = self.add_filechos)
-        self.get_file_b = Button(text = "Genera file", pos_hint = {"center_x":0.5, "center_y":0.1}, background_down = "assets/Button_orange_2.png", background_normal = "assets/Button_orange_2.png", size_hint = (0.1, 0.06), on_press = self.get_file)
-       
+        self.exit_fl = Button(text = "Indietro", font_size = 30, pos_hint = {"center_x":0.93, "center_y":0.966}, background_down = "assets/Button_orange_2.png", background_normal = "assets/Button_orange_2.png", size_hint = (0.1, 0.06), on_press = self.add_filechos)
+        self.get_file_b = Button(text = "Genera file", font_size = 30, pos_hint = {"center_x":0.5, "center_y":0.1}, background_down = "assets/Button_orange_2.png", background_normal = "assets/Button_orange_2.png", size_hint = (0.1, 0.06), on_press = self.get_file)
+
 
         self.file_livl.add_widget(self.backr)
         self.file_livl.add_widget(self.toolbar3)
@@ -185,10 +186,10 @@ class MainApp(FloatLayout):
         self.alertliv5 = RelativeLayout()
         self.alertliv5.add_widget(Button(background_color = (0,0,0,0.2), background_down = "", background_normal = "", on_press = self.add_options_liv))
         self.alertliv5.add_widget(Button(size_hint = (0.3, 0.3), background_down = "assets/Button_white.png", background_normal = "assets/Button_white.png", pos_hint = {"center_x":0.5, "center_y":0.5}, on_press = self.add_options_liv))
-        self.alertliv5.add_widget(Label(text = "Opzioni", outline_color = (0,0,0,1), outline_width = 2, font_size = 20, pos_hint = {"center_x":0.5, "center_y":0.6}))
-        self.alertliv5.add_widget(Button(text = "Elimina clienti", pos_hint = {"center_x":0.5, "center_y":0.52}, background_down = "assets/Button_orange_2.png", background_normal = "assets/Button_orange_2.png", size_hint = (0.1, 0.06), on_press = self.delete_all_customers))
-        self.alertliv5.add_widget(Button(text = "Aggiorna app", pos_hint = {"center_x":0.5, "center_y":0.42}, background_down = "assets/Button_orange_2.png", background_normal = "assets/Button_orange_2.png", size_hint = (0.1, 0.06), on_press = self.update))
-    
+        self.alertliv5.add_widget(Label(text = "Opzioni", outline_color = (0,0,0,1), outline_width = 2, font_size = 40, pos_hint = {"center_x":0.5, "center_y":0.6}))
+        self.alertliv5.add_widget(Button(text = "Elimina clienti", font_size = 30, pos_hint = {"center_x":0.5, "center_y":0.52}, background_down = "assets/Button_orange_2.png", background_normal = "assets/Button_orange_2.png", size_hint = (0.1, 0.06), on_press = self.delete_all_customers))
+        self.alertliv5.add_widget(Button(text = "Aggiorna app", font_size = 30, pos_hint = {"center_x":0.5, "center_y":0.42}, background_down = "assets/Button_orange_2.png", background_normal = "assets/Button_orange_2.png", size_hint = (0.1, 0.06), on_press = self.update))
+
     # functions
 
     def text_input_change(self, *args):
@@ -238,30 +239,9 @@ class MainApp(FloatLayout):
             else:
                 self.add_generical_alert("    Il cliente che cerchi\ndi aggiungere esiste già!")
 
-    def solution(self, *args):
-            global customer_name
-            var = customer_name
-            while True:
-                if var != customer_name:
-                    self.customer_namez.text = f"Cliente : {customer_name}"
-                    break
-                else:
-                    continue
-
-    def add_customer_view(self, *args):
-        global check1
-        if check1 == False:
-            self.add_widget(self.livello1)
-            p = threading.Thread(target = self.solution)
-            p.start()
-            check1 = True                                         # adds layout with customer datas and options
-        else:
-            self.remove_widget(self.livello1)
-            check1 = False
-
     def widgets(self, *args):
         global customer_name
-        self.layout = GridLayout(cols=1, spacing=10, size_hint_y=None)
+        self.layout = GridLayout(cols=1, spacing=30, size_hint_y=None)
         self.root = ScrollView(size_hint=(0.77, 0.7), pos_hint = {"center_x":0.5, "center_y":0.42})
         self.layout.bind(minimum_height=self.layout.setter('height'))
         var =[]
@@ -273,17 +253,18 @@ class MainApp(FloatLayout):
                 global customer_name
                 customer_name = self.text
             self.layout.bind(minimum_height=self.layout.setter('height'))
-            self.sol = RelativeLayout(size_hint_y=None, height=30)
-            self.btn = Button(text = i, size_hint_y=None, height=30, background_down = "assets/Button_sky_4.png", background_normal = "assets/Button_sky_4.png", on_press = press)
-            self.btn_text = Label(text = i, outline_color = (0,0,0,0), outline_width = 2)
+            self.sol = RelativeLayout(size_hint_y=None, height=50)
+            self.btn = Button(text = i, font_size = 30, size_hint_y=None, height=50, background_down = "assets/Button_sky_4.png", background_normal = "assets/Button_sky_4.png")
+            self.btn_text = Label(text = i, font_size = 30, outline_color = (0,0,0,0), outline_width = 2)
             self.sol.add_widget(self.btn)
             self.sol.add_widget(self.btn_text)
             self.layout.add_widget(self.sol)
             self.btn.bind(on_press = self.add_customer_view)
+            self.btn.bind(on_press = press)
         self.root.add_widget(self.layout)
 
     def widgets2(self, *args):
-        self.layout = GridLayout(cols=1, spacing=10, size_hint_y=None)
+        self.layout = GridLayout(cols=1, spacing=30, size_hint_y=None)
         self.root = ScrollView(size_hint=(0.77, 0.7), pos_hint = {"center_x":0.5, "center_y":0.42})
         self.layout.bind(minimum_height=self.layout.setter('height'))
         var =[]
@@ -296,14 +277,28 @@ class MainApp(FloatLayout):
                 global customer_name
                 customer_name = self.text
             self.layout.bind(minimum_height=self.layout.setter('height'))
-            self.sol = RelativeLayout(size_hint_y=None, height=30)
-            self.btn = Button(text = i, size_hint_y=None, height=30, background_down = "assets/Button_sky_4.png", background_normal = "assets/Button_sky_4.png", on_press = press)
-            self.btn_text = Label(text = i, outline_color = (0,0,0,0), outline_width = 2)
+            self.sol = RelativeLayout(size_hint_y=None, height=50)
+            self.btn = Button(text = i, font_size = 30, size_hint_y=None, height=50, background_down = "assets/Button_sky_4.png", background_normal = "assets/Button_sky_4.png")
+            self.btn_text = Label(text = i, font_size = 30, outline_color = (0,0,0,0), outline_width = 2)
             self.sol.add_widget(self.btn)
             self.sol.add_widget(self.btn_text)
             self.layout.add_widget(self.sol)
             self.btn.bind(on_press = self.add_customer_view)
+            self.btn.bind(on_press = press)
         self.root.add_widget(self.layout)
+
+    def add_customer_view(self, *args):
+        global check1, customer_name
+        if check1 == False:
+            if var != customer_name:
+                self.customer_namez.text = f"Cliente : {customer_name}"
+                if len(customer_name) > 8:
+                    self.customer_namez.text = f"Cliente :\n{customer_name}"
+            self.add_widget(self.livello1)
+            check1 = True                                          # adds layout with customer datas and options
+        else:
+            self.remove_widget(self.livello1)
+            check1 = False
 
     def alert3(self, *args):
         global check2
@@ -339,8 +334,8 @@ class MainApp(FloatLayout):
         self.text_work_details.text = ""
 
     def validatee(self, *args):
-        data_storage.put(customer_name, data = self.works.text)        
-        
+        data_storage.put(customer_name, data = self.works.text)
+
     def get_file(self, *args):
         global customer_name, file_path
         file_path = self.filechos.path
@@ -349,7 +344,22 @@ class MainApp(FloatLayout):
         file.close()
         self.add_customer_view()
         self.add_filechos()
-        self.add_generical_alert(f"file creato nella\ndirectory {file_path}")
+        if len(file_path) > 14:
+            file_path = file_path.split("/")
+            varx = len(file_path)
+            varx = 1/2*varx
+            end_path = []
+            for x in file_path:
+                if file_path.index(x) > varx:
+                    end_path.append(x)
+                    file_path.pop()
+            file_path = "/".join(file_path)
+            print(file_path)
+            end_path = "/".join(end_path)
+            print(end_path)
+            self.add_generical_alert(f"file creato nella\ndirectory {file_path}/\n{end_path}")
+        else:
+            self.add_generical_alert(f"file creato nella\ndirectory {file_path}")
 
     def add_generical_alert(self, txt):
         global check3
@@ -366,7 +376,7 @@ class MainApp(FloatLayout):
                 self.alertliv4.remove_widget(self.nope)
             except:
                 pass
-    
+
     def add_filechos(self, *args):
         global check4
         if check4 == False:
@@ -398,7 +408,7 @@ class MainApp(FloatLayout):
             data_storage.delete(x)
         self.refresh()
         self.add_generical_alert("")
-    
+
     def update(self, *args):
         global version
         try:
