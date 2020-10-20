@@ -428,7 +428,7 @@ class MainApp(FloatLayout):
             file1 = filez1.replace("\n", "")
             final_version = float(filez1)
             if final_version > version:
-                subprocess.Popen("./update.py")
+                subprocess.Popen("./update.sh")
                 sys.exit()
             else:
                 self.add_generical_alert(f"L'app è alla versione\npiù aggiornata! {final_version}")
