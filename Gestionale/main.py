@@ -290,10 +290,9 @@ class MainApp(FloatLayout):
     def add_customer_view(self, *args):
         global check1, customer_name
         if check1 == False:
-            if var != customer_name:
-                self.customer_namez.text = f"Cliente : {customer_name}"
-                if len(customer_name) > 8:
-                    self.customer_namez.text = f"Cliente :\n{customer_name}"
+            self.customer_namez.text = f"Cliente : {customer_name}"
+            if len(customer_name) > 8:
+                self.customer_namez.text = f"Cliente :\n{customer_name}"
             self.add_widget(self.livello1)
             check1 = True                                          # adds layout with customer datas and options
         else:
